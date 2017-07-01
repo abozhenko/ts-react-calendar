@@ -1,0 +1,52 @@
+.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+	width: 100%;
+}
+
+.divTableCell{
+	display: table-cell;
+	padding: 10px;
+}
+
+.calendar{
+    width: 50px;
+}
+
+.red{
+    background: red;
+}
+
+.headerContainer {
+	text-align: center;
+}
+
+.header-nav
+{
+    display: inline-block;
+}
+
+.header-title {
+    width: 100px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.calendar-manual-input{
+    background: #fff;
+}
+
+.selected{
+	background: green;
+}
+
+.dateSelector {
+	display: inline-block;
+}
+
+.grey{
+	color: blue;
+}
