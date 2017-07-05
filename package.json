@@ -2,6 +2,7 @@
   "name": "ts-react-calendar",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://abozhenko.github.io/ts-react-calendar",
   "dependencies": {
     "@types/jest": "^20.0.2",
     "@types/node": "^8.0.6",
@@ -17,6 +18,8 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }

@@ -108,5 +108,6 @@ button.datepicker-today {
     color: #666;;
 	flex-grow: 0;
 	align-self: flex-end;
+	outline-style: none;
 }
 

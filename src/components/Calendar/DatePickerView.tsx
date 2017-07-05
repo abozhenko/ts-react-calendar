@@ -62,6 +62,9 @@ export default class DatePickerView extends React.Component<DatePickerViewProps,
     let currMonth = currDate.month();
     let firstViewDay = currDate.clone().startOf('month').weekday(0);
     let lastViewDay = currDate.clone().endOf('month').weekday(6);
+    if (lastViewDay.diff(firstViewDay, 'weeks') < 5){
+      lastViewDay.add(1, 'week');
+    }
     let result: CalendarCell[][] = []
 
     let day = firstViewDay.clone()
