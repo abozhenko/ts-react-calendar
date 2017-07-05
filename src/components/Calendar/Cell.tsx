@@ -26,9 +26,9 @@ export default class Cell extends React.Component<CellProps, {}> {
       classes += ' datepicker-cell-aboverange'
     }
     return (
-      <th className={classes} onClick={this.clickHandler}>
+      <td className={classes} onClick={this.clickHandler}>
         {this.props.label}
-      </th>
+      </td>
       )
   }
 }

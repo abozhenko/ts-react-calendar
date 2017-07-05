@@ -45,11 +45,11 @@ export default class DatePickerHeader extends React.Component<DatePickerHeaderPr
   render() {
     return (
       <div className="datepicker-header">
-          <span className="datepicker-header-nav-backward" onClick={this.handleBackward}>{'❮'}</span>
-          <span className="datepicker-header-content" onClick={this.handleHeaderClick}>
+          <span className="datepicker-header-nav-backward datepicker-clickable-area" onClick={this.handleBackward}>{'❮'}</span>
+          <span className="datepicker-header-content datepicker-clickable-area" onClick={this.handleHeaderClick}>
             {this.getHeaderTextBasedOnViewMode()}
           </span>
-          <span className="datepicker-header-nav-forward" onClick={this.handleForward}>{'❯'}</span>
+          <span className="datepicker-header-nav-forward datepicker-clickable-area" onClick={this.handleForward}>{'❯'}</span>
       </div>
     ) 
   }

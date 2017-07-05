@@ -7,6 +7,10 @@ import * as Moment from 'moment'
 interface CalendarState extends Common.Datable {
 }
 
+export interface CalendarProps {
+  dateChanged?: (newValue: Date) => void
+}
+
 function Input(props: Common.Datable) {
   return (
     <input 
@@ -18,7 +22,7 @@ function Input(props: Common.Datable) {
   )
 }
 
-export default class Calendar extends React.Component<{}, CalendarState> {
+export default class Calendar extends React.Component<CalendarProps, CalendarState> {
   constructor() {
       super();
       this.state = {
@@ -28,6 +32,10 @@ export default class Calendar extends React.Component<{}, CalendarState> {
 
   onDateChanged = (newValue: Date) => {
     this.setState({date: newValue})
+    
+    if (this.props.dateChanged) {
+      this.props.dateChanged(newValue)
+    }
   }
 
   render() {

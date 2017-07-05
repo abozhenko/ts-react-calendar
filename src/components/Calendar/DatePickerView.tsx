@@ -10,6 +10,53 @@ export interface DatePickerViewProps extends Common.Datable, Common.ViewMode {
 
 export default class DatePickerView extends React.Component<DatePickerViewProps, {}> {
   render() {
+    let header = this.getHeader()
+    let body = this.getBody()
+    
+    return (
+      <table className="datepicker-view">
+        <thead>
+          {header}
+        </thead>
+        <tbody>
+          {body}
+        </tbody>
+      </table>
+    )
+  }
+
+  private getBody() {
+    let content: CalendarCell[][] = []
+    if (this.props.viewMode === Common.CalendarViewMode.Day) {
+      content = this.getDates()
+    } else if (this.props.viewMode === Common.CalendarViewMode.Month) {
+      content = this.getMonths()
+    } else {
+      content = this.getYears()
+    }
+
+    let body = content.map(row => {
+      let rowKey = Moment(row[0].date).format("YYYY-WW")
+      return (
+        <tr key={rowKey}>
+          {this.getBodyRow(row)}
+        </tr>
+      )
+    })
+    return body;
+  }
+
+  private getBodyRow(row: CalendarCell[]) {
+    let rowContent = row.map( (day, ind) => {
+      let dayKey = Moment(day.date).format("YYYY-MM-DD")
+      return (
+        <Cell  {... day} key={dayKey} dateSelected={this.props.dateSelected}/>
+      )
+    })
+    return rowContent;
+  }
+
+  private getHeader() {
     let header = undefined;
     if (this.props.viewMode === Common.CalendarViewMode.Day) {
       let headings = this.generateWeekDays().map((day, ind) => {
@@ -21,35 +68,7 @@ export default class DatePickerView extends React.Component<DatePickerViewProps,
       })
       header = (<tr>{headings}</tr>);
     }
-    
-    let content: CalendarCell[][] = []
-    if (this.props.viewMode === Common.CalendarViewMode.Day) {
-      content = this.getDates()
-    } else if (this.props.viewMode === Common.CalendarViewMode.Month) {
-      content = this.getMonths()
-    } else {
-      content = this.getYears()
-    }
-
-    let body = content.map(row => {
-      let rowContent = row.map( day => (<Cell  {... day} dateSelected={this.props.dateSelected}/>))
-      return (
-        <tr>
-          {rowContent}
-        </tr>
-      )
-    })
-
-    return (
-      <table className="datepicker-view">
-        <thead>
-          {header}
-        </thead>
-        <tbody>
-          {body}
-        </tbody>
-      </table>
-    )
+    return header
   }
 
   private generateWeekDays() {
