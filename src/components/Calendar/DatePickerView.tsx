@@ -12,13 +12,14 @@ export default class DatePickerView extends React.Component<DatePickerViewProps,
   render() {
     let header = undefined;
     if (this.props.viewMode === Common.CalendarViewMode.Day) {
-      header = this.generateWeekDays().map((day, ind) => {
+      let headings = this.generateWeekDays().map((day, ind) => {
         return (
-          <div className="divTableCell" key={ind}> 
+          <th key={ind}> 
             {day}
-          </div>
+          </th>
         )
       })
+      header = (<tr>{headings}</tr>);
     }
     
     let content: CalendarCell[][] = []
@@ -33,19 +34,21 @@ export default class DatePickerView extends React.Component<DatePickerViewProps,
     let body = content.map(row => {
       let rowContent = row.map( day => (<Cell  {... day} dateSelected={this.props.dateSelected}/>))
       return (
-        <div className="divTableRow">
+        <tr>
           {rowContent}
-        </div>
+        </tr>
       )
     })
 
     return (
-      <div className="divTable">
-        <div className="divTableRow">
+      <table className="datepicker-view">
+        <thead>
           {header}
-        </div>
-        {body}
-      </div>
+        </thead>
+        <tbody>
+          {body}
+        </tbody>
+      </table>
     )
   }
 

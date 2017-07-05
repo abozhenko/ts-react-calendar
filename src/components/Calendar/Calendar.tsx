@@ -10,7 +10,7 @@ interface CalendarState extends Common.Datable {
 function Input(props: Common.Datable) {
   return (
     <input 
-      className="calendar-manual-input"
+      className="calendar-header-input"
       type="text"
       readOnly = {true}
       value={Moment(props.date).format('LL')}
@@ -33,15 +33,9 @@ export default class Calendar extends React.Component<{}, CalendarState> {
   render() {
     return (
       <div className="calendar">
-        <div className="divTable">
-          <div className="divTableRow">
-            <div className="divTableCell">
-              <Input date={this.state.date} />
-            </div>
-            <div className="divTableCell" >
-              <button>C</button>
-            </div>
-          </div>
+        <div className="calendar-header">
+          <Input date={this.state.date} />
+          <div className="calendar-header-icon"></div>    
         </div>
         <DatePicker date={this.state.date} dateChanged={this.onDateChanged} />
       </div>

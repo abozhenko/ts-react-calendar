@@ -18,17 +18,17 @@ export default class Cell extends React.Component<CellProps, {}> {
   }
   
   render() {
-    let classes = 'divTableCell'
+    let classes = 'datepicker-cell'
     if (this.props.isSelected) {
-      classes += ' selected'
+      classes += ' datepicker-cell-selected'
     }
     if (!this.props.isCurrentRange) {
-      classes += ' grey'
+      classes += ' datepicker-cell-aboverange'
     }
     return (
-      <div className={classes}>
-      <span onClick={this.clickHandler}>{this.props.label}</span>
-      </div>
+      <th className={classes} onClick={this.clickHandler}>
+        {this.props.label}
+      </th>
       )
   }
 }

@@ -74,10 +74,12 @@ export default class DatePicker extends React.Component<DatePickerProp, DatePick
       dateSelected: this.onDateSelected
     }
     return (
-      <div className="dateSelector">
+      <div className="datepicker">
         <DatePickerHeader {... headerProps}/>
         <DatePickerView {... viewProps}/>
-        <div><button onClick={this.onTodayClick}>Today</button></div>
+        <div className="datepicker-bottom-area">
+          <button className= "datepicker-today" onClick={this.onTodayClick}>Today</button>
+        </div>
       </div>
     ) 
   }
