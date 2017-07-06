@@ -1,27 +1,19 @@
 import * as Moment from 'moment'
 import * as React from 'react'
 import * as Common from './Common'
-import {CalendarCell} from './Cell'
-import Cell from './Cell'
+import {Cell, CalendarCell} from './Cell'
 
 export interface DatePickerViewProps extends Common.Datable, Common.ViewMode {
   dateSelected: (date: Date) => void
 }
 
-export default class DatePickerView extends React.Component<DatePickerViewProps, {}> {
+export class DatePickerView extends React.Component<DatePickerViewProps, {}> {
   render() {
-    let header = this.getHeader()
-    let body = this.getBody()
-    
-    return (
-      <table className="datepicker-view">
-        <thead>
-          {header}
-        </thead>
-        <tbody>
-          {body}
-        </tbody>
-      </table>
+   return (
+      <div className="datepicker-view">
+        {this.getHeader()}
+        {this.getBody()}
+      </div>
     )
   }
 
@@ -38,9 +30,9 @@ export default class DatePickerView extends React.Component<DatePickerViewProps,
     let body = content.map(row => {
       let rowKey = Moment(row[0].date).format("YYYY-WW")
       return (
-        <tr key={rowKey}>
+        <div key={rowKey} className="datepicker-view-row">
           {this.getBodyRow(row)}
-        </tr>
+        </div>
       )
     })
     return body;
@@ -61,12 +53,12 @@ export default class DatePickerView extends React.Component<DatePickerViewProps,
     if (this.props.viewMode === Common.CalendarViewMode.Day) {
       let headings = this.generateWeekDays().map((day, ind) => {
         return (
-          <th key={ind}> 
+          <div key={ind} className="datepicker-view-cell-stretch-in-row datepicker-view-cell-header"> 
             {day}
-          </th>
+          </div>
         )
       })
-      header = (<tr>{headings}</tr>);
+      header = (<div className="datepicker-view-row">{headings}</div>);
     }
     return header
   }
@@ -98,7 +90,8 @@ export default class DatePickerView extends React.Component<DatePickerViewProps,
         date: day.toDate(),
         label: day.date().toString(),
         isCurrentRange: day.month() === currMonth,
-        isSelected: day.month() === currMonth && day.date() === currDate.date()
+        isSelected: day.month() === currMonth && day.date() === currDate.date(),
+        view: Common.CalendarViewMode.Day
       }
       row.push(cell)
       day.add(1, 'day')
@@ -120,7 +113,8 @@ export default class DatePickerView extends React.Component<DatePickerViewProps,
         date: monthToShow.toDate(),
         isSelected: curr.month() === monthNum,
         isCurrentRange: true,
-        label: monthToShow.format('MMM')
+        label: monthToShow.format('MMM'),
+        view: Common.CalendarViewMode.Month
       })
     })
     
@@ -143,7 +137,8 @@ export default class DatePickerView extends React.Component<DatePickerViewProps,
         date: yearToShow.toDate(),
         isSelected: curr.year() === yearToShow.year(),
         isCurrentRange: yearOffset >= 0 && yearOffset < 10,
-        label: yearToShow.format('YYYY')
+        label: yearToShow.format('YYYY'),
+        view: Common.CalendarViewMode.Year
       })
     })
     return result

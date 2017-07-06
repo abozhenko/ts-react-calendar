@@ -5,10 +5,12 @@ body {
 /*Calendar*/
 
 .calendar {
-    width: 250px;
+    width: 300px;    
+	height: 350px;
 	display: flex;
 	flex-direction: column;
 	font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+	font-weight: 200;
 }
 
 .calendar-header {
@@ -44,7 +46,7 @@ input.calendar-header-input {
 	flex-direction: column;
 	flex-grow: 1;
 	background-color: #323439;
-	color: #eee;
+	color: #bbb;
 }
 
 /*Date picker header*/
@@ -70,44 +72,71 @@ input.calendar-header-input {
 	flex-grow: 1;
 	text-align: center;
 	margin: 0px 10px;
+	color: inherit;
 }
 
+.datepicker-header span:hover{
+	color: white;
+}
 
 /*datepicker view */
-table.datepicker-view {
-	flex-grow: 1;
-	flex-basis: 100%;
-	width: 100%;
-	height: 100%;
+.datepicker-view {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 1px;
 	padding: 15px;
 	text-align: center;
 }
 
-th.datepicker-view{
+.datepicker-view-row {
 	font: inherit;
-	font-weight: 400px;
-	min-width: 25px;
-	min-height: 25px;
-	padding: 0px;
-	margin: 0px;
+	display: flex;
+	flex-direction: row;
+	flex: 1 1 1px;
 }
 
-td.datepicker-cell {
+.datepicker-view-cell-stretch-in-row {
 	font: inherit;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	flex: 1 1 1px;
+}
+
+.datepicker-view-cell-header {
+	color: #eee;
+	font-weight: 400;
+}
+
+.datepicker-view-cell-align-vartical {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.datepicker-view-cell-data {
+    min-width: 21px;
+    padding: 3px;
 	cursor: pointer;
-	min-width: 25px;
-	min-height: 25px;
-	padding: 0px;
-	margin: 0px;
 }
 
-td.datepicker-cell-selected{
+.datepicker-view-cell-data:hover {
+	color: white;
+}
+
+.datepicker-view-cell-selected {
+	color: white;
 	background: indianred;
-	border-radius: 50%;
+	border-radius: 21px;
 }
 
-td.datepicker-cell-aboverange{
+.datepicker-view-cell-aboverange {
 	color: #666;
+}
+
+.datepicker-view-cell-wide {
+    padding: 3px 8px;
 }
 
 .datepicker-bottom-area {
@@ -125,5 +154,9 @@ button.datepicker-today {
 	flex-grow: 0;
 	align-self: flex-end;
 	outline-style: none;
+	cursor: pointer;
 }
 
+button.datepicker-today:hover {
+	color: #bbb;
+}

@@ -1,8 +1,8 @@
 import * as React from 'react'
 import './style/Calendar.css'
-import DatePicker from './DatePicker'
 import * as Common from './Common'
 import * as Moment from 'moment'
+import {DatePicker} from './DatePicker'
 
 interface CalendarState extends Common.Datable {
 }
@@ -22,7 +22,7 @@ function Input(props: Common.Datable) {
   )
 }
 
-export default class Calendar extends React.Component<CalendarProps, CalendarState> {
+export class Calendar extends React.Component<CalendarProps, CalendarState> {
   constructor() {
       super();
       this.state = {
@@ -45,7 +45,7 @@ export default class Calendar extends React.Component<CalendarProps, CalendarSta
           <Input date={this.state.date} />
           <div className="calendar-header-icon"></div>    
         </div>
-        <DatePicker date={this.state.date} dateChanged={this.onDateChanged} />
+        <DatePicker date={this.state.date} dateChanged={this.onDateChanged}/>
       </div>
     )
   }

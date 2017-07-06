@@ -7,7 +7,7 @@ export interface DatePickerHeaderProps extends Common.Datable, Common.ViewMode {
   navigated: (direction: 1|-1) => void
 }
 
-export default class DatePickerHeader extends React.Component<DatePickerHeaderProps, {}> {
+export class DatePickerHeader extends React.Component<DatePickerHeaderProps, {}> {
   handleForward = () => {
     this.props.navigated(1)
   }

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import './index.css'
-import Calendar from './components/Calendar/Calendar'
+import {Calendar} from './components/Calendar/index'
 
 ReactDOM.render(
   <Calendar />,

@@ -1,10 +1,8 @@
 import * as React from 'react'
-import DatePickerView from './DatePickerView'
-import {DatePickerViewProps} from './DatePickerView'
-import DatePickerHeader from './DatePickerHeader'
-import {DatePickerHeaderProps} from './DatePickerHeader'
 import * as Common from './Common'
 import * as Moment from 'moment'
+import {DatePickerView, DatePickerViewProps} from './DatePickerView'
+import {DatePickerHeader, DatePickerHeaderProps} from './DatePickerHeader'
 
 interface DatePickerState extends Common.ViewMode {
 }
@@ -13,7 +11,7 @@ export interface DatePickerProp extends Common.Datable {
     dateChanged: (newValue: Date) => void
 }
 
-export default class DatePicker extends React.Component<DatePickerProp, DatePickerState> {
+export class DatePicker extends React.Component<DatePickerProp, DatePickerState> {
   constructor() {
     super();
     this.state = {
@@ -57,6 +55,7 @@ export default class DatePicker extends React.Component<DatePickerProp, DatePick
   }
 
   onTodayClick = () => {
+    this.updateViewMode(Common.CalendarViewMode.Day)
     this.props.dateChanged(new Date())
   }
 
